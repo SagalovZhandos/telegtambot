@@ -442,12 +442,11 @@ def main():
     users_roles[ADMIN_ID] = 'admin'
 
     # Создаем Application с JobQueue
-    app = (
-        ApplicationBuilder()
-        .token(BOT_TOKEN)
-        .concurrent_updates(True)  # Разрешаем параллельные обновления
-        .build()
-    )
+    app = ApplicationBuilder().token(BOT_TOKEN).post_init(post_init).build()
+
+async def post_init(app):
+    app.job_queue = app.job_queue or app.job_queue
+
     
     # Команды
     app.add_handler(CommandHandler("start", start))
