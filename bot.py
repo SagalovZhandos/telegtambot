@@ -441,11 +441,9 @@ def main():
     # Добавляем админа по умолчанию
     users_roles[ADMIN_ID] = 'admin'
 
-    # Создаем Application с JobQueue
-    app = ApplicationBuilder().token(BOT_TOKEN).post_init(post_init).build()
 
-async def post_init(app):
-    app.job_queue = app.job_queue or app.job_queue
+    # Создаем Application с JobQueue
+    app = ApplicationBuilder().token(BOT_TOKEN).build()
 
     
     # Команды
