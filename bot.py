@@ -27,7 +27,7 @@ SPREADSHEET_NAME = "Telegram zayavki"
 REMINDER_INTERVAL = 300  # 5 минут в секундах
 
 # Роли пользователей
-ADMIN_ID = 1132625886  # Ваш ID 1132625886
+ADMIN_ID = 886922044  # Ваш ID 1132625886  886922044
 users_roles = {}  # {user_id: 'admin'/'dispatcher'/'technician'}
 
 # Инициализация Google Sheets
