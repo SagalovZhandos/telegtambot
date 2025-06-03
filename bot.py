@@ -1,7 +1,5 @@
 import os
 import logging
-import os, json
-from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime, timedelta
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
@@ -29,12 +27,12 @@ SPREADSHEET_NAME = "Telegram zayavki"
 REMINDER_INTERVAL = 300  # 5 минут в секундах
 
 # Роли пользователей
-ADMIN_ID = [1132625886, 886922044] # Ваш ID 1132625886  886922044
+ADMIN_ID = 1132625886  # Ваш ID 1132625886  886922044
 users_roles = {}  # {user_id: 'admin'/'dispatcher'/'technician'}
 
 # Инициализация Google Sheets
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name("GOOGLE_CREDS.json", scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name("service_account.json", scope)
 gs_client = gspread.authorize(creds)
 
 # Активные заявки и напоминания
@@ -443,7 +441,7 @@ def main():
     # Добавляем админа по умолчанию
     users_roles[ADMIN_ID] = 'admin'
 
-    
+
     # Создаем Application с JobQueue
     app = ApplicationBuilder().token(BOT_TOKEN).build()
 
