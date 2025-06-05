@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from typing import Dict, List
 import asyncio
 import time
+import base64   
 
 from telegram import (
     Update,
@@ -63,9 +64,8 @@ statistics = {
 
 # Инициализация Google Sheets
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name("service_account.json", scope)
-gs_client = gspread.authorize(creds)
-
+creds_json = base64.b64decode(os.getenv("GOOGLE_CREDENTIALS")).decode()
+creds = ServiceAccountCredentials.from_json_keyfile_dict(eval(creds_json), scope)
 
 
 
